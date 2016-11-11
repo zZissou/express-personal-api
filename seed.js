@@ -1,5 +1,29 @@
 // This file allows us to seed our application with data
 // simply run: `node seed.js` from the root of this project folder.
+var db = require('./models')
+
+
+var planet_list = [
+  {
+  name:+
+  image:+
+  system:+
+  suns:
+  atmosphere:
+  climate:
+  nativeSpecies:+
+  population:+
+  Capital:+
+  majorExports:
+  }
+];
+
+var system_list = [
+  name:
+  region:
+  planets:
+]
+}
 
 // var db = require('./models');
 
