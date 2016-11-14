@@ -106,8 +106,8 @@ app.get('/api', function api_index(req, res) {
   res.json({
     woopsIForgotToDocumentAllMyEndpoints: true, // CHANGE ME ;)
     message: "Welcome to my personal api! Here's what you need to know!",
-    documentationUrl: "https://github.com/zZissou/express_self_api/README.md", // CHANGE ME
-    baseUrl: "http://shrouded-tundra-69167.herokuapp.com", // CHANGE ME
+    documentationUrl: "https://github.com/zZissou/express_self_api/README.md",
+    baseUrl: "http://shrouded-tundra-69167.herokuapp.com",
     endpoints: [
       {
         method: "GET",
@@ -117,15 +117,51 @@ app.get('/api', function api_index(req, res) {
       {
         method: "GET",
         path: "/api/profile",
-        description:
-        }]
+        description: {
+          name: "Kyle Russell",
+          githubLink: "https://github.com/zZissou",
+          personalSiteLink: "https://zzissou.github.io/",
+          currentCity: "San Francisco, CA"
+        }
+
       },
         // CHANGE ME
       {
         method: "POST",
-        path: "/api/starwars",
-        description: "E.g. Create a new campsite"
-      } // CHANGE ME
+        path: "/api/movies",
+        description: [
+          {
+            name: "The Life Aquatic with Steve Zissou",
+            director: "Wes Anderson",
+            released: "2004"
+          },
+          {
+            name: "The Darjeeling Limited",
+            director: "Wes Anderson",
+            released: "2007"
+          },
+          {
+            name: "The Royal Tenenbaums",
+            director: "Wes Anderson",
+            released: "2002"
+          },
+          {
+            name: "Rushmore",
+            director: "Wes Anderson",
+            released: "1999"
+          },
+          {
+            name: "Ratatouille",
+            director: "Brad Bird",
+            released: "2007"
+          },
+          {
+            name: "This is Englad",
+            director: "Shane Meadouws",
+            released: "2007"
+          }
+        ]
+      }
     ]
   })
 });
