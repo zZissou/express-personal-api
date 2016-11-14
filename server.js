@@ -46,6 +46,61 @@ app.post('/api/shows', function (req, res) {
     releaseDate: req.body.releaseDate,
   });
 
+  db.Creator.findOne({name: req.body.creator})
+  function(err, creator){
+    newShow.creator = creator;
+    newShow.save(function(err, show){
+      if (err) {
+        return console.log("create error: " + err);
+      }
+      if (creator === null) {
+        console.log("New Creator");
+
+        var newCreator = new db.Creator({
+          name: req.body.creator
+        });
+        newCreator.save();
+        newShow.creator = newCreator;
+      }
+      console.log("created ", show.title);
+      res.json(show);
+    });
+  });
+});
+
+app.delete('/api/shows/:id', function (req, res) {
+  console.log('shows delete', req.params);
+  var showId = req.params.id;
+  db.Show.findOneandRemove({_id: showId },
+  function (err, deletedShow) {,
+    res.json(deletedShow);
+  });
+});
+
+app.post('/api/shows/:show_id/characters',
+  function (req, res) {
+    var showId = req.params.show_id;
+    db.Show.findById(showId)
+      .populate('creator')
+      .exec(function(err, foundShow) {
+        console.log(foundShow);
+        if (err) {
+          res.status(500).json({error: err.message});
+        } else if (foundShow === null) {
+          res.status(404).json({error: "No Show found by this ID"});
+        } else {
+          foundShow.characters.push(req.body);
+          foundShow.save();
+          res.status(201).json(foundShow);
+        }
+      }
+    );
+  });
+
+
+
+
+
 app.get('/api', function api_index(req, res) {
   // TODO: Document all your api endpoints below
   res.json({
