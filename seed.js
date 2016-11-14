@@ -4,13 +4,77 @@ var db = require('./models')
 
 var show_list = [
   {
-  title:"",
-  // mainCharacter:"",
-  creator:"",
-  image:"",
-  releaseDate:"",
-  // seasons:"",
+  title:"Rugrats",
+  creator:"Paul Germain",
+  image:"http://www.imdb.com/title/tt0101188/mediaviewer/rm135657984",
+  releaseDate:"1990"
   },
+  {
+  title: "Hey Arnold!",
+  creator: "Craig Bartlett",
+  image: "http://www.imdb.com/title/tt0115200/mediaviewer/rm3011774976",
+  releaseDate: "1994"
+  },
+  {
+  title: "Doug",
+  creator: "Jim Jinkins",
+  image: "http://www.imdb.com/title/tt0101084/mediaviewer/rm4009661696",
+  releaseDate: "1991"
+  },
+  {
+  title: "Rocko's Modern Life",
+  creator: "Joe Murray",
+  image: "http://www.imdb.com/title/tt0106115/mediaviewer/rm1408996608",
+  releaseDate: "1993"
+  },
+  {
+  title: "Ren & Stimpy",
+  creator: "John Kricfalusi"
+  image: "https://en.wikipedia.org/wiki/The_Ren_%26_Stimpy_Show#/media/File:The_Ren_and_Stimpy_Show_Title_Card.jpg",
+  releaseDate: "1991"
+  },
+  {
+  title: "CatDog",
+  creator: "Peter Hannan",
+  image: "https://en.wikipedia.org/wiki/File:CatDog.jpeg",
+  releaseDate: "1998"
+  },
+  {
+  title: "The Wild Thornberrys",
+  creator: "Arlene Klasky",
+  image: "https://upload.wikimedia.org/wikipedia/en/e/ef/Thornberryslogo.gif",
+  releaseDate: "1998"
+  },
+  {
+  title: "SpongeBob SquarePants",
+  creator: "Stephen Hillenburg",
+  image: "https://upload.wikimedia.org/wikipedia/en/2/24/SpongeBob_SquarePants_logo.svg",
+  releaseDate: "1999"
+  },
+  {
+  title: "Aaahh!!! Real Monsters",
+  creator: "Gabor Csupo",
+  image:"https://upload.wikimedia.org/wikipedia/en/b/ba/Aaahh_Real_Monsters_Logo.svg",
+  releaseDate: "1994"
+  },
+  {
+  title: "Legends of the Hidden Temple",
+  creator: "David Stanley",
+  image: "https://upload.wikimedia.org/wikipedia/en/7/77/LegendsTitlecard.jpg",
+  releaseDate: "1993"
+  },
+  {
+  title: "The Angry Beavers",
+  creator: "Mitch Schauer",
+  image: "https://upload.wikimedia.org/wikipedia/en/7/79/The_Angry_Beavers_title_card.jpg",
+  releaseDate: "1997"
+  },
+  {
+  title: "Rocket Power",
+  creator: "Arlene Klasky",
+  image: "https://en.wikipedia.org/wiki/Rocket_Power#/media/File:Rocket_Power.jpg",
+  release: "1999"
+  }
 ]
 
 var creators_list:
