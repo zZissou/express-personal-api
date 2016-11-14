@@ -5,10 +5,11 @@ var db = require('./models')
 var show_list = [
   {
   title:"",
+  mainCharacter:"",
   creator:"",
   image:"",
-  seasons:"",
   releaseDate:"",
+  seasons:"",
   },
   {
   title:
