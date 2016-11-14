@@ -1,14 +1,12 @@
 // require express and other modules
 var express = require('express'),
-    app = express();
+  bodyParser = require('body-parser');
 
-// parse incoming urlencoded form data
-// and populate the req.body object
-var bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }));
+var app = express();
 
-// allow cross origin requests (optional)
-// https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true}));
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -19,28 +17,34 @@ app.use(function(req, res, next) {
  * DATABASE *
  ************/
 
-// var db = require('./models');
-
-/**********
- * ROUTES *
- **********/
-
-// Serve static files from the `/public` directory:
-// i.e. `/images`, `/scripts`, `/styles`
-app.use(express.static('public'));
-
-/*
- * HTML Endpoints
- */
+ var db = require('./models');
 
 app.get('/', function homepage(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+app.get('/api/shows', function (req, res) {
+  db.Show.find()
+  .populate('creator')
+  .exec(function(err, shows) {
+    if (err) { return console.log("index error:" + err); }
+    res.json(shows);
+  });
+});
 
-/*
- * JSON API Endpoints
- */
+app.get('/api/shows/:id', function (req, res) {
+  db.Shows.findOne({_id: req.params._id },
+  function(err, data) {
+    res.json(data);
+  });
+});
+
+app.post('/api/shows', function (req, res) {
+  var newShow = new db.Show({
+    title: req.body.title,
+    image: req.body.image,
+    releaseDate: req.body.releaseDate,
+  });
 
 app.get('/api', function api_index(req, res) {
   // TODO: Document all your api endpoints below
@@ -56,7 +60,7 @@ app.get('/api', function api_index(req, res) {
         description: "Describes all available endpoints"
       },
       {
-        method: "GET", 
+        method: "GET",
         path: "/api/profile",
         description:
         }]
