@@ -2,7 +2,7 @@
 // simply run: `node seed.js` from the root of this project folder.
 var db = require('./models')
 
-var show_list = [
+var shows_list = [
   {
   title:"Rugrats",
   creator:"Paul Germain",
@@ -29,7 +29,7 @@ var show_list = [
   },
   {
   title: "Ren & Stimpy",
-  creator: "John Kricfalusi"
+  creator: "John Kricfalusi",
   image: "https://en.wikipedia.org/wiki/The_Ren_%26_Stimpy_Show#/media/File:The_Ren_and_Stimpy_Show_Title_Card.jpg",
   releaseDate: "1991"
   },
@@ -73,18 +73,20 @@ var show_list = [
   title: "Rocket Power",
   creator: "Arlene Klasky",
   image: "https://en.wikipedia.org/wiki/Rocket_Power#/media/File:Rocket_Power.jpg",
-  release: "1999"
+  release: "1999`"
   }
 ]
 
-var creators_list:
+var creators_list = [
   {
-    name:"",
+    name:"Arlene Klasky",
+    alive: true
 
   }
+]
 
 db.Creator.remove({}, function(err, creators) {
-  console.log('removed all authors');
+  console.log('removed all creators');
   db.Creator.create(creators_list, function(err, creators){
     if (err) {
       console.log(err);
@@ -93,7 +95,7 @@ db.Creator.remove({}, function(err, creators) {
     console.log('recreated all creators');
     console.log("created", creators.length, "creators");
 
-    db.Show.remove({}, function(err, books){
+    db.Show.remove({}, function(err, shows){
       console.log('removed all shows');
       shows_list.forEach(function (showData) {
         var show = new db.Show({
@@ -102,7 +104,7 @@ db.Creator.remove({}, function(err, creators) {
           releaseDate: showData.releaseDate
         });
         db.Creator.findOne({name: showData.creator}, function(err, foundCreator) {
-          console.log('found creator ' + foundCreator.name + ' for show ' + show.title);
+          // console.log('found creator ' + foundCreator.name + ' for show ' + show.title);
           if (err) {
             console.log(err);
             return;
@@ -112,9 +114,9 @@ db.Creator.remove({}, function(err, creators) {
             if (err) {
               return console.log(err);
             }
-            console.log('saved '+ savedShow.title + ' by ' + foundCreator.name);
+            // console.log('saved '+ savedShow.title + ' by ' + foundCreator.name);
           });
-        };
+        });
       });
     });
   });

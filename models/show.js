@@ -13,5 +13,5 @@ var ShowSchema = new Schema({
   releaseDate: String,
 });
 
-var Show = mongoose.model('Show', BookSchema);
+var Show = mongoose.model('Show', ShowSchema);
 module.exports = Show;
